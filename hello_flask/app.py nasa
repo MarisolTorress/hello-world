@@ -1,0 +1,42 @@
+from flask  import Flask, render_template
+from datetime import date
+import requests
+
+
+app = Flask(__name__)
+
+@app.route('/')
+def about():
+    return '<p>Welcome to the about coaches site</P>' 
+
+@app.route('/Micheal')
+def micheal():
+    return render_template('stone.html')
+
+@app.route('/stephanie')
+def stephanie()
+return render_template('stephanie.html')
+
+@app.route('/Okra')
+def okra():
+    return render_template('okra.html')
+
+@app.route('/Nasa')
+def show_nasa_pic():
+    today = str(date.today())
+    response = requests.get('https://api.nasa.gov/planetary/apod?api_key=wjlnROXw9B5Sh3WEIJa9k')
+    data=response.json()
+    return render_template('nasa.html', data=data)
+
+    if_name_=='_main_':
+        app.run(debug=True, host='0.0.0.0')
+
+
+# @app.route('/nasa')
+# def nasa_image():
+#     today = str(date.today())
+#     response = requests.get('https://api.nasa.gov/planetary/apod?api_key=wjlnROXw9B5Sh3WEIJa9k')
+
+#     data = response.json()
+
+#     return render_template('nasa.html',data=data)
