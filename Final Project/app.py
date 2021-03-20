@@ -1,19 +1,16 @@
-from flask import Flask, render_template, current_app as app
+from flask import Flask, render_template, request, current_app as app
+
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    return' Tell me what is you favorite food or desert '
-@app.route('/food')
-def food():
+def website():
     return  render_template('Website.html')
-@app.route('/login',methods = ['POST'])
-def login():
-    if request.method == 'POST':
-        user = request.form['nm']
-        return redirect(url_for('success',name = user))
-    else:
-        user = request.args.get('nm')
-        return redirect(url_for('success',name = user))
+
+@app.route('/success', methods=['GET', 'POST'])
+def success():
+    response = request.form['response']
+    return render_template('success.html', response=response)
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
