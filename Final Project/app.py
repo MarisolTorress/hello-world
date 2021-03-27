@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, senseHATEMULATOR, current_app as app
+from flask import Flask, render_template, request, current_app as app
 
 app = Flask(__name__)
 
