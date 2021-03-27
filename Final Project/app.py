@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, current_app as app
+from flask import Flask, render_template, request, senseHATEMULATOR, current_app as app
 
 app = Flask(__name__)
 
@@ -9,7 +9,8 @@ def website():
 @app.route('/success', methods=['GET', 'POST'])
 def success():
     response = request.form['response']
-    return render_template('success.html', response=response)
+    response2 = request.form['response2']
+    return render_template('success.html', response=response, response2=response2)
 
 
 if __name__ == '__main__':
