@@ -1,4 +1,8 @@
 from flask import Flask, render_template, request, current_app as app
+from sense_emu import SenseHat
+
+sense = SenseHat()
+sense.show_message("Enter a Response")
 
 app = Flask(__name__)
 
@@ -10,6 +14,8 @@ def website():
 def success():
     response = request.form['response']
     response2 = request.form['response2']
+    print (response2)  
+    sense.show_message(response2) 
     return render_template('success.html', response=response, response2=response2)
 
 
