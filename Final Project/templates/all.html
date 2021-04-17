@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <title> All messages</title>
+</head>
+<body>
+    <h1> All messages</h1>
+    {% for message in messages %}
+        <p>{{message["message1"]}} from {{message["message2"]}}</p>
+        <form action="/display" method="post">
+            <input type="hidden" name="message" value="{{message['message']}}" />
+            <input type="submit" value="Display Now" />
+        </form>
+    {% andfor %}
+</body>
+</html>html>
