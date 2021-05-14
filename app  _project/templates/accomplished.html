@@ -9,6 +9,21 @@
       {{ response }}
     <h2>When to be completed by </h2>
       {{ response2 }}
+    <h3> Look at your past assignments</h3>
+    <div style="text-align:center">
+      <ul>
+        {% for reminder in accomplished %}
+        <li>
+          <p> {{ reminder["reminder"] }} {{ reminder["date"] }}</p>
+          <a href = "/delete/{{reminder['rowid']}}" > <button>Delete</button></a>
+          <a href = "/edit/{{reminder['rowid']}}" > <button>Edit</button></a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+      
+    
     
 </head>
 </html>

@@ -15,16 +15,37 @@ scheduler.start()
 def show_reminder():
   return render_template('app.html')
 
+@app.route('/buttonPressed/<btn>')
+def press(btn):
+  print('button ' + str(btn) + 'was pushed')
+  return render_template('accomplished.html')
+
+@app.route('/tasks')
+def tasks():
+  conn = sqlite3.connect('./static/data/appTasks.db')
+  curs = conn.cursor()
+  tasks = []
+  rows = curs.execute("SELECT * from tasks")
+  for row in rows:
+    message = {'reminder': row[0], 'date': row[1], 'rowid': row[2]}
+    print (message)  
+    tasks.append(message)
+    sense.show_message(message) 
+  conn.close()
+  return render_template('app.html', reminder=reminder, date=date, accomplished=tasks)
+
+
 
 @app.route('/accomplished', methods=['GET', 'POST'])
 def accomplished():
     response = request.form['response']
     response2 = request.form['response2']
+    print(response)
+    print(response2)
     conn = sqlite3.connect('./static/data/appTasks.db')
     curs = conn.cursor()
     curs.execute("INSERT INTO tasks (reminder, date) VALUES(?,?)",(response, response2))
     conn.commit()
-
     conn.close()
     
     print (response2)  
